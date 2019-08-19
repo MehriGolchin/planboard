@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { Header, Dashboard } from './components';
-import { Default } from '../themes';
+import { Default } from './themes';
 import { ServerStyleSheet, ThemeProvider } from 'styled-components';
 
 const App = () => (

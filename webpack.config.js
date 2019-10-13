@@ -2,11 +2,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-    entry: './src/index.tsx',
+    //target: 'node',
+    entry: ['./src/index.tsx'],
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
-        filename: 'app.bundle.js'
+        filename: 'app.bundle.js',
+        publicPath: '/'
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -16,7 +18,8 @@ module.exports = {
     devServer: {
         contentBase: path.join(__dirname, 'dist'),
         compress: true,
-        port: 9000
+        port: 9000,
+        historyApiFallback: true
     },
     module: {
         rules: [
@@ -31,12 +34,12 @@ module.exports = {
                 test: /\.(png|svg|jpg|gif)$/,
                 use: [
                     {
-                      loader: 'url-loader',
-                      options: {
-                        limit: 8192
-                      }
+                        loader: 'url-loader',
+                        options: {
+                            limit: 8192
+                        }
                     }
-                  ]
+                ]
             }
         ]
     },

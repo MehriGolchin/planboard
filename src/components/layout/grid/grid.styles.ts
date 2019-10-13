@@ -11,6 +11,12 @@ export interface ColumnProps {
     readonly gutter?: number;
 }
 
+export const Container = styled.div`
+    padding-top: 70px; 
+    width: 100%; 
+    height: 100%;
+`;
+
 export const Row = styled.div<RowProps>`
     display: flex;
     align-items: stretch;
@@ -22,8 +28,9 @@ export const Row = styled.div<RowProps>`
 `;
 
 export const Column = styled.div<ColumnProps>`
-    background: grey;
+    background-color: grey;
     color: #000;
+    padding: 20px;
     text-align: ${(props) => props.justify};
     flex: ${(props) => props.grow || 1};
     ${(props) => props.gutter && css`

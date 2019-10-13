@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Head, Toggle, LineTop, LineMiddle, LineBottom } from './header.styles';
+import { HeadContainer, Head, Toggle, LineTop, LineMiddle, LineBottom } from './header.styles';
 import { Navbar } from '../navbar';
 import { Logo } from '../logo';
 
@@ -13,29 +13,37 @@ export class Header extends Component<{}, HeaderState> {
         super(props);
         this.state = { isShown: false, isAuthenticated: true };
 
-        this.hideShow = this.hideShow.bind(this);
+        this.toggle = this.toggle.bind(this);
     }
 
-    hideShow() {
-        this.setState(prevState => ({
+    toggle() {
+        this.setState((prevState) => ({
             isShown: !prevState.isShown
         }));
+    }
+
+    onNavbarClick = () => {
+        if (this.state.isShown) {
+            this.setState((prevState) => ({
+                isShown: false
+            }));
+        }
     }
 
     render() {
         const { isShown, isAuthenticated } = this.state;
         return (
-            <div>
+            <HeadContainer collapsed={isShown}>
                 <Head collapsed={isShown}>
                     <Logo />
-                    <Navbar authenticated={isAuthenticated} collapsed={isShown} />
-                    <Toggle onClick={this.hideShow}>
+                    <Navbar authenticated={isAuthenticated} collapsed={isShown} handleClick={this.onNavbarClick} />
+                    <Toggle onClick={this.toggle}>
                         <LineTop collapsed={isShown} />
                         <LineMiddle collapsed={isShown} />
                         <LineBottom collapsed={isShown} />
                     </Toggle>
                 </Head>
-            </div>
+            </HeadContainer>
         )
     }
 }

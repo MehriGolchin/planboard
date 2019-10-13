@@ -5,6 +5,16 @@ export interface CollapsableProps {
     readonly collapsed: boolean;
 }
 
+export const HeadContainer = styled.div<CollapsableProps>`
+    height: ${(props) => props.collapsed ? '100%' : '70px'};
+    position: fixed;
+    width: 100%;
+    z-index: 99;
+    @media only screen and ${device.tablet} {
+        height: ${(props) => props.collapsed ? '100%' : '50px'};
+    }
+`;
+
 export const Head = styled.header<CollapsableProps>`
     position: relative;
     display: flex;
@@ -17,6 +27,8 @@ export const Head = styled.header<CollapsableProps>`
     @media only screen and ${device.tablet} {
         height: ${(props) => props.collapsed ? '100%' : '50px'};
         flex-direction: column;
+        -webkit-font-smoothing: antialiased;
+        background-color: #fff;
     }
 `;
 
